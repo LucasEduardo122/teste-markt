@@ -1,0 +1,10 @@
+/node_modules
+/vendor
+/error_log
+/.env
+/.env.*
+.DS_Store
+._*
+.ftp*
+.vscode
+/mariadb

@@ -1,0 +1,46 @@
+version: '3'
+services:
+    apache:
+        image: andrerodrigue5/apache2-php8.1
+        container_name: web-teste
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - .:/var/www/html/
+        networks:
+            - docker-rede
+        depends_on:
+            - "mariadb"
+        restart: always
+    mariadb:
+        image: mariadb:10.5.2
+        container_name: db-teste
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: teste
+            MYSQL_ROOT_PASSWORD: 123456
+        networks:
+            - docker-rede
+        volumes:
+            - ./mariadb/:/var/lib/mysql
+            - ./tabela.sql:/docker-entrypoint-initdb.d/tabela.sql
+        restart: always
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: pma-teste
+        ports:
+            - "8080:80"
+        environment:
+            PMA_HOST: db-teste
+            PMA_PORT: 3306
+            UPLOAD_LIMIT: 500M
+        networks:
+            - docker-rede
+        depends_on:
+            - "mariadb"
+        restart: always
+networks:
+    docker-rede:
+        driver: bridge
