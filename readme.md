@@ -15,3 +15,5 @@
 **Requisitos:** Para atualizar um usuário, é necessário preencher todos os dados. Como é algo para segurança, foi adicionado um campo de senha antiga. Sendo assim, informe uma nova senha (pode ser a senha antiga) e a senha antiga para serem comparadas. Caso a senha antiga seja diferente da atual (a que está cadastrada no sistema), os dados não serão atualizados. O sistema também valida se o email ou o CPF já é de outro usuário cadastrado.
 
 **Stacks:** Foram utilizadas as seguintes stacks: PHP, MYSQL e JAVASCRIPT.
+
+**Observação:** Caso a porta 443 não funcione, tente a porta 80;
